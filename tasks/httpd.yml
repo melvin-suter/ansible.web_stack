@@ -1,0 +1,63 @@
+---
+
+- name: Install Apache
+  yum:
+    name: "{{ httpd_packages }}"
+    state: present
+
+- name: Create user "{{ httpd_user }}"
+  user:
+    name: "{{ httpd_user }}"
+    # group: "{{ httpd_group }}"
+    shell: /bin/false
+    create_home: false
+    system: true
+    state: present
+
+
+- name: Create Apache conf dir
+  file:
+    state: directory
+    path: "{{ httpd_conf_dir }}"
+    owner: root
+    group: root
+    mode: '0750'
+    recurse: yes
+
+- name: Create Apache vhosts dir
+  file:
+    state: directory
+    path: "{{ httpd_dir_vhosts }}"
+    owner: "{{ httpd_user }}"
+    group: "{{ httpd_group }}"
+    mode: '4750'
+    recurse: yes
+
+- name: Config selinux on Apache vhosts dir
+  sefcontext:
+    target: "{{ httpd_dir_vhosts }}(/.*)?"
+    setype: httpd_sys_rw_content_t
+    state: present
+  when: "webstack_handle_selinux == true"
+
+- name: Config selinux on Apache log dir
+  sefcontext:
+    target: "{{ httpd_dir_logs }}(/.*)?"
+    setype: httpd_log_t
+    state: present
+  when: "webstack_handle_selinux == true"
+
+- name: Apply new SELinux file context to filesystem
+  command: restorecon -irv /srv/git_repos
+  when: "webstack_handle_selinux == true"
+  
+- name: Generate Apache config file
+  template:
+    src: templates/httpd.conf.j2
+    owner: "{{ httpd_user }}"
+    group: "{{ httpd_group }}"
+    dest: "{{ httpd_conf_path }}"
+    mode: 0640
+
+
+...

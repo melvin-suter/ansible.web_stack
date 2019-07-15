@@ -1,0 +1,47 @@
+---
+# --- httpd ---
+httpd_conf_path: /etc/httpd/conf/httpd.conf
+httpd_conf_dir: /etc/httpd/vhosts
+httpd_dir_vhosts: /var/www/vhosts
+httpd_dir_logs: /var/log/httpd
+
+httpd_packages: 
+- httpd
+httpd_service: httpd
+httpd_user: apache
+httpd_group: apache
+
+# --- php ---
+php_dependencies:
+- epel-release
+- yum-utils
+- http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+php_pre60_conf_ini_path: /opt/remi/php{PHP_VERSION}/root/etc/php.ini
+php_pre60_conf_fpm_path: /opt/remi/php{PHP_VERSION}/root/etc/php-fpm.conf
+php_pre60_conf_fpm_www_path: /opt/remi/php{PHP_VERSION}/root/etc/php-fpm.d/www.conf
+php_conf_ini_path: /etc/opt/remi/php{PHP_VERSION}/php.ini
+php_conf_fpm_path: /etc/opt/remi/php{PHP_VERSION}/php-fpm.conf
+php_conf_fpm_www_path: /etc/opt/remi/php{PHP_VERSION}/php-fpm.d/www.conf
+
+php_tmpfilesd_path: /usr/lib/tmpfiles.d/php.conf
+
+
+
+
+
+
+
+
+
+# --- node ---
+node_packages: 
+- node
+
+# --- nginx ---
+nginx_packages:
+- nginx
+nginx_service: nginx
+
+
+...

@@ -1,0 +1,18 @@
+---
+# asible.web_stack/tasks/main.yml
+- import_tasks: include-vars.yml
+  tags: ['web_stack']
+
+# http installation
+- import_tasks: httpd.yml
+  tags: ['web_stack','web_stack.httpd']
+
+# filesystem preparation
+- import_tasks: php.yml
+  tags: ['web_stack','web_stack.php']
+
+
+
+
+
+...
