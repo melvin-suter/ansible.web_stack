@@ -1,33 +1,24 @@
 ---
 
-
 # --- webstack ---
+httpd_server_admin: "webmaster@example.com"
 webstack_handle_selinux: true
 
-
-# --- httpd ---
-httpd_create_user: true
-httpd_server_admin: root@localhost
-
-
 # --- php ---
-  
-php_packages:
-- php
-- php-cli
-- php-fpm
-- php-pdo
-- php-mcrypt
-- php-gd
-- php-curl
-- php-mysql
-- php-pecl-zip
-- php-mysqlnd
-- php-yaml
-
 php_versions:
 - 56
 - 72
 - 73
+
+php_packages:
+- php
+- php-cli
+- php-fpm
+- php-mysqlnd
+- php-pdo
+- php-gd
+- php-pecl-zip
+- php-yaml
+
 
 ...

@@ -1,10 +1,10 @@
 ---
-# file: test/playbook_gitea.yml
+# file: test/playbook_webstack.yml
 - name: Install and configure a Full-stack Web Server
   hosts: 
   - web.example.com
   roles:
-    - role: melvin_suter.webstack
+    - role: melvin_suter.web_stack
   vars:
     httpd_server_admin: root@localhost
 

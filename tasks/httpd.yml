@@ -40,6 +40,23 @@
     state: present
   when: "webstack_handle_selinux == true"
 
+
+- name: Create Log dir
+  file:
+    state: directory
+    path: "{{ httpd_dir_logs }}"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+
+- name: Create Log dir
+  file:
+    state: directory
+    path: "{{ httpd_dir_logs }}/logs"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+
 - name: Config selinux on Apache log dir
   sefcontext:
     target: "{{ httpd_dir_logs }}(/.*)?"
@@ -58,6 +75,13 @@
     group: "{{ httpd_group }}"
     dest: "{{ httpd_conf_path }}"
     mode: 0640
+
+- name: Create self-signed certificate as placeholder
+  command: >
+    openssl req -x509 -nodes -subj '/CN=localhost' -days 3650
+    -newkey rsa:4096 -sha256 -keyout /etc/httpd/tmp_ssl_key.pem -out /etc/httpd/tmp_ssl_cert.pem
+    creates=/etc/httpd/tmp_ssl_cert.pem
+
 
 
 ...

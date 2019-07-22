@@ -2,7 +2,7 @@
 galaxy_info:
   author: Melvin Suter
   company: 
-  description: Install & Configure a full webstack + deploy websites 
+  description: Install & Configure a full webstack
   role_name: web_stack
   min_ansible_version: 2.4
   license: GPL
@@ -12,24 +12,20 @@ galaxy_info:
     - 7
   galaxy_tags:
   - webserver
-  - nginx
   - node
   - httpd
   - webstack
 
 dependencies:
-  - role: "melvin_suter.firewalld"
-    vars:
-      firewalld_open_ports:
-      - port: 22
-        protocol: tcp
-        zone: public
-      - port: 22
-        protocol: udp
-        zone: public
-      - port: 80
-        protocol: tcp
-        zone: public
-      - port: 443
-        protocol: tcp
-        zone: public
+- role: "uniqconsulting.mariadb"
+  vars:
+      mariadb_secure_installation: yes
+- role: "melvin_suter.firewalld"
+  vars:
+    firewalld_open_ports:
+    - port: 80
+      protocol: tcp
+      zone: public
+    - port: 443
+      protocol: tcp
+      zone: public

@@ -1,0 +1,17 @@
+---
+  - name: Install epel-release
+    yum:
+      name: epel-release 
+      state: installed
+
+  - name: Install certbot
+    yum:
+      name: certbot 
+      state: installed
+
+  - name: Install python2-certbot-apache
+    yum:
+      name: python2-certbot-apache
+      state: installed
+
+...

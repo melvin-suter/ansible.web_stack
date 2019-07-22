@@ -5,9 +5,6 @@ This Ansible Role installs, configures a complete web-stack on a linux server.
 * `Install and configure MariaDB`
 * `Install and configure Apache`
 * `Install and configure Node`
-* `Install and configure Nginx`
-* `Install and configure Let's Encrypt`
-* `Deploys websites based on git-repos or standalone`
 
 Requirements
 ------------

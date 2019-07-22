@@ -1,5 +1,5 @@
 ---
-# asible.web_stack/tasks/main.yml
+# ansible.web_stack/tasks/main.yml
 - import_tasks: include-vars.yml
   tags: ['web_stack']
 
@@ -7,9 +7,14 @@
 - import_tasks: httpd.yml
   tags: ['web_stack','web_stack.httpd']
 
-# filesystem preparation
+# php installation
 - import_tasks: php.yml
   tags: ['web_stack','web_stack.php']
+
+
+# letsencrypt installation
+- import_tasks: letsencrypt.yml
+  tags: ['web_stack','web_stack.letsencrypt']
 
 
 

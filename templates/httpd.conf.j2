@@ -6,6 +6,8 @@ Group {{ httpd_group }}
 
 ServerAdmin {{ httpd_server_admin }}
 
+Listen 80
+
 <Directory />
     AllowOverride none
     Require all denied
@@ -20,7 +22,7 @@ ServerAdmin {{ httpd_server_admin }}
 </Files>
 
 
-ErrorLog "{{httpd_dir_logs}}/logs/error_log"
+ErrorLog "{{httpd_dir_logs}}/error_log"
 LogLevel warn
 
 <IfModule log_config_module>
@@ -33,7 +35,7 @@ LogLevel warn
     </IfModule>
 
 
-    CustomLog "{{httpd_dir_logs}}/logs/access_log" combined
+    CustomLog "{{httpd_dir_logs}}/access_log" combined
 </IfModule>
 
 
@@ -55,5 +57,7 @@ AddDefaultCharset UTF-8
 </IfModule>
 EnableSendfile on
 IncludeOptional conf.d/*.conf
+
+# LoadModule ssl_module /usr/lib64/apache2-prefork/mod_ssl.so
 
 IncludeOptional {{ httpd_conf_dir }}/*.conf

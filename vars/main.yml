@@ -7,6 +7,7 @@ httpd_dir_logs: /var/log/httpd
 
 httpd_packages: 
 - httpd
+- mod_ssl
 httpd_service: httpd
 httpd_user: apache
 httpd_group: apache
