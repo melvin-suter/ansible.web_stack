@@ -19,6 +19,7 @@ php_packages:
 - php-gd
 - php-pecl-zip
 - php-yaml
+- php-json
 
 
 ...
