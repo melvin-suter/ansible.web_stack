@@ -3,6 +3,7 @@
 # --- webstack ---
 httpd_server_admin: "webmaster@example.com"
 webstack_handle_selinux: true
+use_git: true
 
 # --- php ---
 php_versions:

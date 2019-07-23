@@ -16,6 +16,11 @@
 - import_tasks: letsencrypt.yml
   tags: ['web_stack','web_stack.letsencrypt']
 
+# git installation
+- import_tasks: git.yml
+  tags: ['web_stack','web_stack.git']
+
+
 
 
 

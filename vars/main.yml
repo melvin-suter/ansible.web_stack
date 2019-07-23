@@ -28,21 +28,8 @@ php_conf_fpm_www_path: /etc/opt/remi/php{PHP_VERSION}/php-fpm.d/www.conf
 php_tmpfilesd_path: /usr/lib/tmpfiles.d/php.conf
 
 
-
-
-
-
-
-
-
 # --- node ---
 node_packages: 
 - node
-
-# --- nginx ---
-nginx_packages:
-- nginx
-nginx_service: nginx
-
 
 ...

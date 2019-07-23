@@ -35,10 +35,25 @@
 
 - name: Config selinux on Apache vhosts dir
   sefcontext:
-    target: "{{ httpd_dir_vhosts }}(/.*)?"
+    target: "{{ httpd_dir_vhosts }}/.*/www(/.*)?"
     setype: httpd_sys_rw_content_t
     state: present
   when: "webstack_handle_selinux == true"
+
+- name: Config selinux on Apache log dir
+  sefcontext:
+    target: "{{ httpd_dir_vhosts }}/.*/logs(/.*)?"
+    setype: httpd_log_t
+    state: present
+  when: "webstack_handle_selinux == true"
+
+- name: Config selinux on Apache vhosts dir
+  sefcontext:
+    target: "{{ httpd_dir_vhosts }}/.*/ssl(/.*)?"
+    setype: cert_t
+    state: present
+  when: "webstack_handle_selinux == true"
+
 
 
 - name: Create Log dir

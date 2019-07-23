@@ -1,0 +1,38 @@
+---
+
+- name: Install Git
+  yum:
+    name: "git" 
+    state: present
+  when: "use_git == true"
+
+- name: Copy Git Key
+  copy:
+    src: "{{ local_git_key }}"
+    dest: "{{ remote_git_key }}"
+    owner: root
+    group: root
+    mode: 0600
+  when: "setup_git_key == true"
+
+- name: Create ssh config file
+  file:
+    state: touch
+    path: "{{ remote_git_config }}"
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Insert Git Config
+  blockinfile:
+    path: "{{ remote_git_config }}"
+    block: |
+      Host {{ git_host }}
+      User {{ git_user }}
+      IdentityFile {{ remote_git_key }}
+  when: "setup_git_key == true" 
+
+
+
+
+...
