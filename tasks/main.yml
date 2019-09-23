@@ -3,6 +3,11 @@
 - import_tasks: include-vars.yml
   tags: ['web_stack']
 
+# Setup for melvin_suter.motd
+- import_tasks: motd.yml
+  tags: ['web_stack']
+
+
 # http installation
 - import_tasks: httpd.yml
   tags: ['web_stack','web_stack.httpd']
