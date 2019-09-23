@@ -1,0 +1,21 @@
+---
+- name: Add motd commands 
+  lineinfile:
+    line: "{{ item }}"       
+    path: "/etc/motd.commands"
+    create: yes              
+    state: present           
+  with_items:
+    - systemctl status httpd 
+    - systemctl status php73-php-fpm php72-php-fpm php56-php-fpm
+
+- name: Add motd files
+  lineinfile:
+    line: "{{ item }}"
+    path: "/etc/motd.files"
+    create: yes              
+    state: present           
+  with_items:
+    - /var/www/vhosts/ 
+
+...
