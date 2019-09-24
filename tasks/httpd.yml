@@ -97,6 +97,10 @@
     -newkey rsa:4096 -sha256 -keyout /etc/httpd/tmp_ssl_key.pem -out /etc/httpd/tmp_ssl_cert.pem
     creates=/etc/httpd/tmp_ssl_cert.pem
 
+- name: Delete bullshit confs
+  file:
+    path: /etc/httpd/conf.d
+    state: absent
 
 
 ...
