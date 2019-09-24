@@ -16,6 +16,10 @@
 - import_tasks: php.yml
   tags: ['web_stack','web_stack.php']
 
+- name: Copy my.cnf
+  template:
+    src: templates/my.cnf.j2
+    dest: /etc/my.cnf
 
 # letsencrypt installation
 - import_tasks: letsencrypt.yml
