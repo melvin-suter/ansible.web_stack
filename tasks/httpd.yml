@@ -99,7 +99,7 @@
 
 - name: Delete bullshit confs
   file:
-    path: /etc/httpd/conf.d
+    path: /etc/httpd/conf.d/*
     state: absent
 
 
