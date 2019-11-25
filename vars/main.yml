@@ -5,10 +5,14 @@ httpd_conf_dir: /etc/httpd/vhosts
 httpd_dir_vhosts: /var/www/vhosts
 httpd_dir_logs: /var/log/httpd
 
-httpd_packages: 
+httpd_packages_el7: 
 - httpd
 - mod_ssl
 - composer
+httpd_packages_el8: 
+- httpd
+- mod_ssl
+- composer-cli
 httpd_service: httpd
 httpd_user: apache
 httpd_group: apache
