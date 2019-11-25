@@ -1,9 +1,16 @@
 ---
 
-- name: Install Apache
+- name: Install Apache (CentOS 7)
   yum:
-    name: "{{ httpd_packages }}"
+    name: "{{ httpd_packages_el7 }}"
     state: present
+  when: ansible_facts['distribution_major_version'] == '7'
+  
+- name: Install Apache (CentOS 8)
+  yum:
+    name: "{{ httpd_packages_el8 }}"
+    state: present
+  when: ansible_facts['distribution_major_version'] == '8'
 
 - name: Create user "{{ httpd_user }}"
   user:
